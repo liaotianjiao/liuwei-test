@@ -1,0 +1,81 @@
+git     
+     目的：通过git管理github托管项目代码
+
+     git是一个版本管理工具，是可以在你电脑不联网的情况下，只在本地使用的一个版本管理工具，其作用就是可以让你更好的管理你的程序，git允许你通过提交对一个系统（或一组）文件的历史进行注释。这些提交便是在给定时间点对系统做出的差异“快照”。你就能知道你何时对项目做了什么修改。比如你原来提交过的内容，以后虽然修改了，但是通过git这个工具，可以把你原来提交的内容重现出来，这样对于你后来才意识到的一些错误的更改，可以进行还原。
+
+
+
+github
+
+        这是一个网站，就是每个程序员自己写的程序，可以在github上建立一个网上的仓库，你每次提交的时候可以把代码提交到网上，这样你的每次提交，别人也都可以看到你的代码，同时别人也可以帮你修改你的代码，这种开源的方式非常方便程序员之间的交流和学习。这也是一个非常适合程序员交流的网站，很多国际上的技术大牛都在github上有自己的开源代码，其他人只要申请个账号就可以随意的看到这些大牛写的程序。同时国内的很多互联网公司如百度，阿里等，也在github上公布有开源的代码，感兴趣的程序员也可以自己查找着看一些。想看国内大公司的代码，可以看连接：https://www.zhihu.com/question/20194937
+
+总结来说，git可以认为是一个软件，能够帮你更好的写程序，github则是一个网站，这个网站可以帮助程序员之间互相交流和学习。用一句话形容这二者的关系：git是弓，你的代码是箭，github是靶子。 
+
+
+一，基础流程
+
+ git init，来完成初始化工作，这时候目录里面就多了一个.git的目录了。
+
+
+增加对我们github上创建的buxingxing仓库的管理。git remote add origin git@github.com:bxxfighting/buxingxing.git
+其中bxxfighting是我在网站上注册时使用的用户名，buxingxing.git是我为这个项目建立的仓库名，在网站上显示是这样的：
+
+
+由于我建立仓库的时候创建README.md之时，已经算一次提交了，我需要先在本地同步一下仓库的内容,命令如下：
+git pull git@github.com:bxxfighting/buxingxing.git
+完成的效果如下图，并且本地目录下多出了README.md文件
+
+
+ 下面就要把我刚创建的文件上传到到仓库上去了，首先执行增加命令，如下：git add .    （这后面是一个英文的句号）
+add后面加了一个点，是想要提交所有文件，如果想提交指定的文件，可以写文件名
+
+
+再执行 git status，就可以看到这两个文件已经加上去了。
+$ git status -s
+A  README
+
+
+执行完增加命令后，要执行提交命令，如下：git commit –m “这里写下你自己的记录本次提交内容的信息”
+m后面跟提示信息，这个提示信息是一定要写的，不仅是规则，同时也方便我们记录我们提交的过程，写清晰为什么提交或修改了什么是非常有用的
+
+
+提交完成后，我们就要把它推送到远程仓库上去了，命令如下：git push git@github.com:bxxfighting/buxingxing.git
+这样就完成了我们要做的所有任务
+
+
+每次增加了新文件就先add，然后commit，如果只是改了文件的内容，只执行commit就行了，当然最后一步都是要执行push，把所以改变推送到我们的github上去托管。
+
+
+二，git clone
+
+使用 git clone 拷贝一个 Git 仓库到本地，让自己能够查看该项目，或者进行修改。
+如果你需要与他人合作一个项目，或者想要复制一个项目，看看代码，你就可以克隆那个项目。 执行命令：
+ git clone [url]　　　　[url] 为你想要复制的项目，就可以了。
+
+例如我们克隆 Github 上的项目：
+$ git clone git@github.com:schacon/simplegit.git
+
+克隆完成后，在当前目录下会生成一个 simplegit 目录：
+
+$ cd simplegit/
+$ ls
+README   Rakefile lib
+上述操作将复制该项目的全部记录。
+
+默认情况下，Git 会按照你提供的 URL 所指示的项目的名称创建你的本地项目目录。 通常就是该 URL 最后一个 / 之后的项目名称。如果你想要一个不一样的名字， 你可以在该命令后加上你想要的名称。 $ git clone git@github.com:schacon/simplegit.git　自定义名称
+
+git clone http://github.com/CosmosHua/locate new
+git clone http://github.com/CosmosHua/locate.git new
+git clone git://github.com/CosmosHua/locate new
+git clone git://github.com/CosmosHua/locate.git new
+
+
+三，git diff
+
+执行 git diff 来查看执行 git status 的结果的详细信息。
+git diff 命令显示已写入缓存与已修改但尚未写入缓存的改动的区别。git diff 有两个主要的应用场景。
+    尚未缓存的改动：git diff
+    查看已缓存的改动： git diff --cached
+    查看已缓存的与未缓存的所有改动：git diff HEAD
+    显示摘要而非整个 diff：git diff --stat
+
